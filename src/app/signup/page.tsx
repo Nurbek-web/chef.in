@@ -1,75 +1,124 @@
-'use client'
-import signUp from "@/firebase/auth/signup";
-import { useRouter } from 'next/navigation';
-import { useState } from "react";
+"use client";
+
+import Link from "next/link";
+
+import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/components/ui/button";
+import { UserAuthForm } from "./user-auth-form";
 
 function Page(): JSX.Element {
-  const [ email, setEmail ] = useState( '' );
-  const [ password, setPassword ] = useState( '' );
-  const router = useRouter();
-
-  // Handle form submission
-  const handleForm = async ( event: { preventDefault: () => void } ) => {
-    event.preventDefault();
-
-    // Attempt to sign up with provided email and password
-    const { result, error } = await signUp( email, password );
-
-    if ( error ) {
-      // Display and log any sign-up errors
-      console.log( error );
-      return;
-    }
-
-    // Sign up successful
-    console.log( result );
-
-    // Redirect to the admin page
-    router.push( "/admin" );
-  }
-
   return (
-    <div className="flex justify-center items-center h-screen text-black">
-      <div className="w-96 bg-white rounded shadow p-6">
-        <h1 className="text-3xl font-bold mb-6">Registration</h1>
-        <form onSubmit={handleForm} className="space-y-4">
-          <div>
-            <label htmlFor="email" className="block mb-1 font-medium">
-              Email
-            </label>
-            <input
-              onChange={( e ) => setEmail( e.target.value )}
-              required
-              type="email"
-              name="email"
-              id="email"
-              placeholder="example@mail.com"
-              className="w-full border border-gray-300 rounded px-3 py-2"
-            />
+    <>
+      <div className="container relative grid h-screen flex-col items-center justify-center sm:grid md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
+        <Link
+          href="/signin"
+          className={cn(
+            buttonVariants({ variant: "ghost" }),
+            "absolute right-4 top-4 md:right-8 md:top-8"
+          )}
+        >
+          Login
+        </Link>
+        <div className="relative hidden h-full flex-col bg-muted p-10 text-white lg:flex dark:border-r">
+          <div className="absolute inset-0 bg-zinc-900" />
+          <div className="relative z-20 flex items-center text-lg font-medium">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="mr-2 h-6 w-6"
+            >
+              <path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3" />
+            </svg>
+            nFactorial Incubator 2024
           </div>
-          <div>
-            <label htmlFor="password" className="block mb-1 font-medium">
-              Password
-            </label>
-            <input
-              onChange={( e ) => setPassword( e.target.value )}
-              required
-              type="password"
-              name="password"
-              id="password"
-              placeholder="password"
-              className="w-full border border-gray-300 rounded px-3 py-2"
-            />
+          <div className="relative z-20 mt-auto">
+            <blockquote className="space-y-2">
+              <p className="text-lg">
+                &ldquo;Chef.in is the best platform for everyone. You can find
+                any recipe you want!&rdquo;
+              </p>
+              <footer className="text-sm">Taizhanov Nurbek</footer>
+            </blockquote>
           </div>
-          <button
-            type="submit"
-            className="w-full bg-blue-500 text-white font-semibold py-2 rounded"
-          >
-            Sign up
-          </button>
-        </form>
+        </div>
+        <div className="lg:p-8">
+          <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
+            <div className="flex flex-col space-y-2 text-center">
+              <h1 className="text-2xl font-semibold tracking-tight">
+                Create an account
+              </h1>
+              <p className="text-sm text-muted-foreground">
+                Enter your email and password below to create your account
+              </p>
+            </div>
+            <UserAuthForm />
+            <p className="px-8 text-center text-sm text-muted-foreground">
+              By clicking continue, you agree to our{" "}
+              <Link
+                href="/terms"
+                className="underline underline-offset-4 hover:text-primary"
+              >
+                Terms of Service
+              </Link>{" "}
+              and{" "}
+              <Link
+                href="/privacy"
+                className="underline underline-offset-4 hover:text-primary"
+              >
+                Privacy Policy
+              </Link>
+              .
+            </p>
+          </div>
+        </div>
       </div>
-    </div>
+      {/* <div className="flex justify-center items-center h-screen text-black">
+        <div className="w-96 bg-white rounded shadow p-6">
+          <h1 className="text-3xl font-bold mb-6">Registration</h1>
+          <form onSubmit={handleForm} className="space-y-4">
+            <div>
+              <label htmlFor="email" className="block mb-1 font-medium">
+                Email
+              </label>
+              <input
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                type="email"
+                name="email"
+                id="email"
+                placeholder="example@mail.com"
+                className="w-full border border-gray-300 rounded px-3 py-2"
+              />
+            </div>
+            <div>
+              <label htmlFor="password" className="block mb-1 font-medium">
+                Password
+              </label>
+              <input
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                type="password"
+                name="password"
+                id="password"
+                placeholder="password"
+                className="w-full border border-gray-300 rounded px-3 py-2"
+              />
+            </div>
+            <button
+              type="submit"
+              className="w-full bg-blue-500 text-white font-semibold py-2 rounded"
+            >
+              Sign up
+            </button>
+          </form>
+        </div>
+      </div> */}
+    </>
   );
 }
 
