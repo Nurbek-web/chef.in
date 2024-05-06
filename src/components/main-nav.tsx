@@ -43,7 +43,7 @@ export default function MainNav() {
         </Link>
         <Link
           className="text-muted-foreground transition-colors hover:text-foreground"
-          href="#"
+          href="/"
         >
           Recipes
         </Link>

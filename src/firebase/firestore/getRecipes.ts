@@ -15,6 +15,12 @@ export default async function getRecipes() {
 
   const recipesSnapshot = await getDocs(recipesRef);
 
-  const recipes = recipesSnapshot.docs.map((doc) => doc.data());
+  const recipes: any = [];
+
+  recipesSnapshot.forEach((doc) => {
+    // doc.data() is never undefined for query doc snapshots
+    recipes.push({ id: doc.id, data: doc.data() });
+  });
+
   return { recipes };
 }

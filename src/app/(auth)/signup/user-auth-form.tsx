@@ -81,6 +81,11 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
           <Button type="submit" className="w-full">
             Sign up
           </Button>
+          <Link href="/">
+            <Button variant="secondary" className="w-full">
+              Back
+            </Button>
+          </Link>
         </div>
       </form>
       <div className="relative">
