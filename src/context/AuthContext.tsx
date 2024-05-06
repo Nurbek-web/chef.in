@@ -6,7 +6,7 @@ import {
   useState,
   ReactNode,
 } from "react";
-import { getAuth, onAuthStateChanged, User } from "firebase/auth";
+import { getAuth, onAuthStateChanged, User, signOut } from "firebase/auth";
 import firebase_app from "@/firebase/config";
 
 import { Spinner } from "@/components/ui/spinner";
@@ -31,6 +31,10 @@ export function AuthContextProvider({
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
+  const logOut = () => {
+    signOut(auth);
+  };
+
   useEffect(() => {
     // Subscribe to the authentication state changes
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -51,7 +55,7 @@ export function AuthContextProvider({
 
   // Provide the authentication context to child components
   return (
-    <AuthContext.Provider value={{ user }}>
+    <AuthContext.Provider value={{ user, logOut }}>
       {loading ? (
         <div className="h-screen flex items-center justify-center">
           <Spinner size="large" />
@@ -62,3 +66,7 @@ export function AuthContextProvider({
     </AuthContext.Provider>
   );
 }
+
+export const UserAuth = () => {
+  return useContext(AuthContext);
+};

@@ -1,5 +1,3 @@
-"use client";
-
 import MainNav from "@/components/main-nav";
 import getRecipes from "@/firebase/firestore/getRecipes";
 import { useEffect, useState } from "react";
@@ -7,17 +5,18 @@ import { Spinner } from "@/components/ui/spinner";
 
 import Recipes from "@/components/recipes";
 
-export default function Home() {
-  const [recipes, setRecipes] = useState(null);
-  useEffect(() => {
-    const getData = async () => {
-      const temp = (await getRecipes()).recipes;
+export default async function Home() {
+  // const [recipes, setRecipes] = useState(null);
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     const temp = (await getRecipes()).recipes;
 
-      console.log("Out recipes data from firebase", temp);
-      setRecipes(temp);
-    };
-    getData();
-  }, []);
+  //     console.log("Out recipes data from firebase", temp);
+  //     setRecipes(temp);
+  //   };
+  //   getData();
+  // }, []);
+  const recipes: any = await getRecipes();
 
   return (
     <>
@@ -33,13 +32,9 @@ export default function Home() {
               </p>
             </div>
           </div>
-          {recipes != null ? (
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-              <Recipes recipes={recipes} />
-            </div>
-          ) : (
-            <Spinner size="large" />
-          )}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            <Recipes recipes={recipes.recipes} />
+          </div>
         </div>
       </section>
     </>
