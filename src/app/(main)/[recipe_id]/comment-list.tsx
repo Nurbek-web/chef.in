@@ -25,7 +25,7 @@ export default async function ({ recipeId }: { recipeId: any }) {
             return <Comment comment={comment} />;
           })}
         </div>
-        <div className="mt-8 flex justify-center">
+        {/* <div className="mt-8 flex justify-center">
           <Pagination>
             <PaginationContent>
               <PaginationItem>
@@ -47,7 +47,7 @@ export default async function ({ recipeId }: { recipeId: any }) {
               </PaginationItem>
             </PaginationContent>
           </Pagination>
-        </div>
+        </div> */}
       </div>
     </>
   );

@@ -39,8 +39,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     // Sign up successful
     console.log(result);
 
-    // Redirect to the admin page
-    router.push("/admin");
+    router.push("/");
   };
 
   async function onSubmit(event: React.SyntheticEvent) {

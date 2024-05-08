@@ -10,7 +10,9 @@ export default function Comment({ comment }: { comment: any }) {
       <div key={comment.id} className="flex items-start space-x-4">
         <Avatar className="h-10 w-10">
           <AvatarImage alt="@shadcn" src="/placeholder-user.jpg" />
-          <AvatarFallback>AC</AvatarFallback>
+          <AvatarFallback>
+            {comment.data.user_mail[0] + comment.data.user_mail[1]}
+          </AvatarFallback>
         </Avatar>
         <div className="flex-1 space-y-2">
           <div className="flex items-center justify-between">

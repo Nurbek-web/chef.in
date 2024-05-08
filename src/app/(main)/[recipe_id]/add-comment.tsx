@@ -9,8 +9,6 @@ import addData from "@/firebase/firestore/addData";
 
 import { Timestamp } from "firebase/firestore";
 import { useState } from "react";
-import { revalidatePath } from "next/cache";
-import getComments from "@/firebase/firestore/getComments";
 import { useRouter } from "next/navigation";
 
 export default function CommentForm({ recipe_id }: { recipe_id: any }) {
@@ -18,7 +16,7 @@ export default function CommentForm({ recipe_id }: { recipe_id: any }) {
 
   const router = useRouter();
 
-  const [disabled, setDisabled] = useState(false); // State to manage the disabled state of the button
+  const [disabled, setDisabled] = useState(true); // State to manage the disabled state of the button
   const [comment, setComment] = useState("");
 
   const handleSubmit = async () => {
@@ -48,6 +46,15 @@ export default function CommentForm({ recipe_id }: { recipe_id: any }) {
     router.refresh();
   };
 
+  const handleChangeInput = (e: any) => {
+    setComment(e.target.value);
+
+    if (e.target.value != "") {
+      return setDisabled(false);
+    }
+    setDisabled(true);
+  };
+
   if (!user) {
     return null;
   }
@@ -71,7 +78,7 @@ export default function CommentForm({ recipe_id }: { recipe_id: any }) {
             id="comment"
             name="comment"
             value={comment}
-            onChange={(e) => setComment(e.target.value)} // Handle changes in the textarea input
+            onChange={handleChangeInput} // Handle changes in the textarea input
             placeholder="Write your comment"
           />
         </div>

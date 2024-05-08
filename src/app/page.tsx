@@ -1,22 +1,22 @@
+import { Suspense } from "react";
+
 import MainNav from "@/components/main-nav";
-import getRecipes from "@/firebase/firestore/getRecipes";
-import { useEffect, useState } from "react";
-import { Spinner } from "@/components/ui/spinner";
-
 import Recipes from "@/components/recipes";
+import { getRecipesPage } from "@/firebase/firestore/getRecipes";
+import RecipePagination from "@/components/recipe-pagination";
 
-export default async function Home() {
-  // const [recipes, setRecipes] = useState(null);
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     const temp = (await getRecipes()).recipes;
+export default async function Home({
+  searchParams,
+}: {
+  searchParams?: {
+    query?: string;
+    page?: string;
+  };
+}) {
+  const query = searchParams?.query || "";
+  const currentPage = Number(searchParams?.page) || 1;
 
-  //     console.log("Out recipes data from firebase", temp);
-  //     setRecipes(temp);
-  //   };
-  //   getData();
-  // }, []);
-  const recipes: any = await getRecipes();
+  const totalPages = await getRecipesPage(query, 4);
 
   return (
     <>
@@ -33,8 +33,15 @@ export default async function Home() {
             </div>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            <Recipes recipes={recipes.recipes} />
+            <Suspense key={query + currentPage} fallback={<>Loading ...</>}>
+              <Recipes
+                recipesPerPage={4}
+                query={query}
+                currentPage={currentPage}
+              />
+            </Suspense>
           </div>
+          <RecipePagination totalPages={totalPages} />
         </div>
       </section>
     </>
