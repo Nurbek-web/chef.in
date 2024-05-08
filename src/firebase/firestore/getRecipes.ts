@@ -3,7 +3,7 @@ import {
   getDocs,
   collection,
   query,
-  orderBy,
+  startAfter,
   getFirestore,
   where,
   getCountFromServer,
@@ -16,18 +16,32 @@ const db = getFirestore(firebase_app);
 export default async function getRecipes(
   queryText: string,
   currentPage: number,
-  recipesPerPage: number
+  recipesPerPage: number,
+  lastVisible: any
 ) {
   const recipesRef = collection(db, "recipes");
 
-  let q = query(
-    recipesRef,
-    where("title", ">=", queryText),
-    where("title", "<=", queryText + "\uf8ff"),
-    // orderBy("created_at", "desc"), // Order comments by creation time in descending order
-    limit(recipesPerPage)
-    // limit(pageSize) // Limit number of comments per page
-  );
+  let q;
+
+  if (lastVisible == null) {
+    q = query(
+      recipesRef,
+      where("title", ">=", queryText),
+      where("title", "<=", queryText + "\uf8ff"),
+      // orderBy("created_at", "desc"), // Order comments by creation time in descending order
+      limit(recipesPerPage)
+      // limit(pageSize) // Limit number of comments per page
+    );
+  } else {
+    q = query(
+      recipesRef,
+      where("title", ">=", queryText),
+      where("title", "<=", queryText + "\uf8ff"),
+      startAfter(lastVisible),
+      limit(recipesPerPage)
+      // limit(pageSize) // Limit number of comments per page
+    );
+  }
 
   const recipesSnapshot = await getDocs(q);
 
@@ -38,31 +52,7 @@ export default async function getRecipes(
     recipes.push({ id: doc.id, data: doc.data() });
   });
 
-  return { recipes };
-}
+  console.log("last", lastVisible);
 
-export async function getRecipesPage(
-  queryText: string,
-  recipesPerPage: number
-) {
-  const recipesRef = collection(db, "recipes");
-
-  let q = query(
-    recipesRef,
-    where("title", ">=", queryText),
-    where("title", "<=", queryText + "\uf8ff")
-
-    // orderBy("created_at", "desc") // Order comments by creation time in descending order
-    // limit(pageSize) // Limit number of comments per page
-  );
-
-  const snapshot = await getCountFromServer(q);
-
-  let count = snapshot.data().count;
-
-  count = Math.ceil(count / recipesPerPage);
-
-  console.log("count: ");
-
-  return count;
+  return { recipes, lastVisible };
 }

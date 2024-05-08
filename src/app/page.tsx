@@ -2,8 +2,6 @@ import { Suspense } from "react";
 
 import MainNav from "@/components/main-nav";
 import Recipes from "@/components/recipes";
-import { getRecipesPage } from "@/firebase/firestore/getRecipes";
-import RecipePagination from "@/components/recipe-pagination";
 
 export default async function Home({
   searchParams,
@@ -15,8 +13,6 @@ export default async function Home({
 }) {
   const query = searchParams?.query || "";
   const currentPage = Number(searchParams?.page) || 1;
-
-  const totalPages = await getRecipesPage(query, 4);
 
   return (
     <>
@@ -41,7 +37,6 @@ export default async function Home({
               />
             </Suspense>
           </div>
-          <RecipePagination totalPages={totalPages} />
         </div>
       </section>
     </>
