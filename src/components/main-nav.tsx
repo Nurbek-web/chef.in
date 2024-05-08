@@ -21,7 +21,7 @@ import {
 import { UserAuth } from "@/context/AuthContext";
 
 export default function MainNav() {
-  const { user, logOut } = UserAuth();
+  const { user, logOut }: any = UserAuth();
 
   const handleSignOut = async () => {
     try {
@@ -148,7 +148,7 @@ export default function MainNav() {
   );
 }
 
-function CircleUserIcon(props) {
+function CircleUserIcon(props: any) {
   return (
     <svg
       {...props}
@@ -169,7 +169,7 @@ function CircleUserIcon(props) {
   );
 }
 
-function MenuIcon(props) {
+function MenuIcon(props: any) {
   return (
     <svg
       {...props}
@@ -190,7 +190,7 @@ function MenuIcon(props) {
   );
 }
 
-function Package2Icon(props) {
+function Package2Icon(props: any) {
   return (
     <svg
       {...props}
@@ -211,7 +211,7 @@ function Package2Icon(props) {
   );
 }
 
-function SearchIcon(props) {
+function SearchIcon(props: any) {
   return (
     <svg
       {...props}

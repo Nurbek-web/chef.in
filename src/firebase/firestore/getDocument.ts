@@ -24,5 +24,5 @@ export default async function getDocument(collection: string, id: string) {
   }
 
   // Return the result and error as an object
-  return { result, error };
+  return { result, error, id };
 }
