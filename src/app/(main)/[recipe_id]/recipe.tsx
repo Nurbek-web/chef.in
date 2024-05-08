@@ -1,12 +1,13 @@
+"use server";
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { HomeIcon } from "lucide-react";
 import Link from "next/link";
 import CommentList from "./comment-list";
+import getDocument from "@/firebase/firestore/getDocument";
 
-export default function RecipePage({ recipe }: { recipe: any }) {
-  console.log(recipe);
-
+export default async function RecipePage({ recipe }: { recipe: any }) {
   return (
     <>
       <div>

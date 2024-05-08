@@ -5,15 +5,31 @@ import {
   query,
   where,
   getFirestore,
+  orderBy,
+  limit,
+  startAfter,
 } from "firebase/firestore";
 
 // Get the Firestore instance
 const db = getFirestore(firebase_app);
 
-export default async function getComments(recipeId: string) {
+export default async function getComments(
+  recipeId: string,
+  pageSize: number = 4,
+  startAfterDoc?: any
+) {
   const commentsRef = collection(db, "comments");
 
-  const q = query(commentsRef, where("recipe_id", "==", recipeId));
+  let q = query(
+    commentsRef,
+    where("recipe_id", "==", recipeId),
+    orderBy("created_at", "desc"), // Order comments by creation time in descending order
+    limit(pageSize) // Limit number of comments per page
+  );
+
+  if (startAfterDoc) {
+    q = query(q, startAfter(startAfterDoc));
+  }
 
   const comments: any = [];
 
@@ -21,9 +37,7 @@ export default async function getComments(recipeId: string) {
 
   querySnapshot.forEach((doc) => {
     const commentData = doc.data();
-    // Convert timestamp to "time ago" format
     const timeAgo = getTimeAgo(commentData.created_at.toMillis());
-    // Include "time ago" in comment data
     const commentWithTimeAgo = {
       id: doc.id,
       data: {
@@ -34,7 +48,10 @@ export default async function getComments(recipeId: string) {
     comments.push(commentWithTimeAgo);
   });
 
-  return comments;
+  return {
+    comments,
+    lastDoc: querySnapshot.docs[querySnapshot.docs.length - 1],
+  };
 }
 
 // Function to calculate "time ago"
