@@ -2,6 +2,7 @@ import { AuthContextProvider } from "@/context/AuthContext";
 import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { Toaster } from "@/components/ui/sonner";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -30,6 +31,7 @@ export default function RootLayout({
       >
         {/* Wrap the children with the AuthContextProvider to provide authentication context */}
         <AuthContextProvider>{children}</AuthContextProvider>
+        <Toaster />
       </body>
     </html>
   );

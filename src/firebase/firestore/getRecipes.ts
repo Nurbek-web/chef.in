@@ -6,53 +6,48 @@ import {
   startAfter,
   getFirestore,
   where,
-  getCountFromServer,
   limit,
+  orderBy,
 } from "firebase/firestore";
 
-// Get the Firestore instance
 const db = getFirestore(firebase_app);
 
 export default async function getRecipes(
   queryText: string,
-  currentPage: number,
   recipesPerPage: number,
-  lastVisible: any
+  lastVisible: any,
+  currentPage: number
 ) {
   const recipesRef = collection(db, "recipes");
 
-  let q;
+  let q = query(
+    recipesRef,
+    where("title", ">=", queryText),
+    where("title", "<=", queryText + "\uf8ff"),
+    orderBy("created_at", "desc"),
+    limit(recipesPerPage)
+  );
 
-  if (lastVisible == null) {
+  if (lastVisible && currentPage > 1) {
     q = query(
       recipesRef,
       where("title", ">=", queryText),
       where("title", "<=", queryText + "\uf8ff"),
-      // orderBy("created_at", "desc"), // Order comments by creation time in descending order
-      limit(recipesPerPage)
-      // limit(pageSize) // Limit number of comments per page
-    );
-  } else {
-    q = query(
-      recipesRef,
-      where("title", ">=", queryText),
-      where("title", "<=", queryText + "\uf8ff"),
+      orderBy("created_at", "desc"),
       startAfter(lastVisible),
       limit(recipesPerPage)
-      // limit(pageSize) // Limit number of comments per page
     );
   }
 
   const recipesSnapshot = await getDocs(q);
 
   const recipes: any = [];
+  let newLastVisible = null;
 
   recipesSnapshot.forEach((doc) => {
-    // doc.data() is never undefined for query doc snapshots
     recipes.push({ id: doc.id, data: doc.data() });
+    newLastVisible = doc;
   });
 
-  console.log("last", lastVisible);
-
-  return { recipes, lastVisible };
+  return { recipes, lastVisible: newLastVisible };
 }

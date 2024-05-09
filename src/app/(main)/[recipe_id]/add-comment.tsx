@@ -1,15 +1,17 @@
 "use client";
 
 import { v4 as uuidv4 } from "uuid";
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { UserAuth } from "@/context/AuthContext";
-import addData from "@/firebase/firestore/addData";
-
 import { Timestamp } from "firebase/firestore";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+
+import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+
+import { UserAuth } from "@/context/AuthContext";
+import addData from "@/firebase/firestore/addData";
 
 export default function CommentForm({ recipe_id }: { recipe_id: any }) {
   const { user }: any = UserAuth();
@@ -39,6 +41,12 @@ export default function CommentForm({ recipe_id }: { recipe_id: any }) {
       console.error("Error adding comment:", error);
     } else {
       console.log("Comment added successfully:");
+      toast("Comment has been added", {
+        action: {
+          label: "OK",
+          onClick: () => console.log("Ok"),
+        },
+      });
       setComment("");
     }
 

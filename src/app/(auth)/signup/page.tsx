@@ -58,66 +58,12 @@ function Page(): JSX.Element {
             </div>
             <UserAuthForm />
             <p className="px-8 text-center text-sm text-muted-foreground">
-              By clicking continue, you agree to our{" "}
-              <Link
-                href="/terms"
-                className="underline underline-offset-4 hover:text-primary"
-              >
-                Terms of Service
-              </Link>{" "}
-              and{" "}
-              <Link
-                href="/privacy"
-                className="underline underline-offset-4 hover:text-primary"
-              >
-                Privacy Policy
-              </Link>
-              .
+              By clicking continue, you agree to our Terms of Service and
+              Privacy Policy .
             </p>
           </div>
         </div>
       </div>
-      {/* <div className="flex justify-center items-center h-screen text-black">
-        <div className="w-96 bg-white rounded shadow p-6">
-          <h1 className="text-3xl font-bold mb-6">Registration</h1>
-          <form onSubmit={handleForm} className="space-y-4">
-            <div>
-              <label htmlFor="email" className="block mb-1 font-medium">
-                Email
-              </label>
-              <input
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                type="email"
-                name="email"
-                id="email"
-                placeholder="example@mail.com"
-                className="w-full border border-gray-300 rounded px-3 py-2"
-              />
-            </div>
-            <div>
-              <label htmlFor="password" className="block mb-1 font-medium">
-                Password
-              </label>
-              <input
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                type="password"
-                name="password"
-                id="password"
-                placeholder="password"
-                className="w-full border border-gray-300 rounded px-3 py-2"
-              />
-            </div>
-            <button
-              type="submit"
-              className="w-full bg-blue-500 text-white font-semibold py-2 rounded"
-            >
-              Sign up
-            </button>
-          </form>
-        </div>
-      </div> */}
     </>
   );
 }

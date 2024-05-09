@@ -1,13 +1,8 @@
 "use client";
 
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/hLZlXwQ1GwT
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-// import { SheetTrigger, SheetContent, Sheet } from "@/components/ui/sheet";
+
 import {
   DropdownMenuTrigger,
   DropdownMenuLabel,

@@ -106,9 +106,6 @@ function LoginForm(): JSX.Element {
                 Login
               </Button>
 
-              <Button variant="outline" className="w-full">
-                Login with Google
-              </Button>
               <Link href="/">
                 <Button variant="secondary" className="w-full">
                   Back to home

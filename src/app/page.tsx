@@ -28,15 +28,9 @@ export default async function Home({
               </p>
             </div>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            <Suspense key={query + currentPage} fallback={<>Loading ...</>}>
-              <Recipes
-                recipesPerPage={4}
-                query={query}
-                currentPage={currentPage}
-              />
-            </Suspense>
-          </div>
+          <Suspense key={query + currentPage} fallback={<>Loading ...</>}>
+            <Recipes recipesPerPage={4} query={query} />
+          </Suspense>
         </div>
       </section>
     </>
