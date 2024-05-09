@@ -2,7 +2,7 @@
 
 This is an open source web application that allows users to find, share and discuss culinary recipes.
 
-[![Chef.in](![image](https://github.com/Nurbek-web/chef.in/assets/78167331/97d9655f-3ebe-41cd-8848-946955bd3320))
+![image](https://github.com/Nurbek-web/chef.in/assets/78167331/97d9655f-3ebe-41cd-8848-946955bd3320)
 
 ## Tech Stack
 
