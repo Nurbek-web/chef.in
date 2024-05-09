@@ -4,6 +4,7 @@ import RecipeCard from "./recipe-card";
 import { useState, useEffect } from "react";
 import getRecipes from "@/firebase/firestore/getRecipes";
 import { Button } from "./ui/button";
+import RecipesSkeleton from "./recipes-skeleton";
 
 export default function Recipes({
   query,
@@ -50,9 +51,15 @@ export default function Recipes({
   return (
     <>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-        {recipes.map((recipe: any, key: number) => (
-          <RecipeCard key={key} recipe={recipe} />
-        ))}
+        {loading ? (
+          <>
+            <RecipesSkeleton />
+          </>
+        ) : (
+          recipes.map((recipe: any, key: number) => (
+            <RecipeCard key={key} recipe={recipe} />
+          ))
+        )}
       </div>
 
       <div className="flex items-center justify-center gap-4">

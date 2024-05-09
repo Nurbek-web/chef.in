@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 import {
   DropdownMenuTrigger,
@@ -19,6 +20,7 @@ import { MenuIcon } from "lucide-react";
 
 export default function MainNav() {
   const { user, logOut }: any = UserAuth();
+  const router = useRouter();
 
   const handleSignOut = async () => {
     try {
@@ -112,9 +114,9 @@ export default function MainNav() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <Link href="/profile">
-                <DropdownMenuItem>My account</DropdownMenuItem>
-              </Link>
+              <DropdownMenuItem onClick={() => router.push("/profile")}>
+                My account
+              </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem>Support</DropdownMenuItem>
               <DropdownMenuSeparator />
