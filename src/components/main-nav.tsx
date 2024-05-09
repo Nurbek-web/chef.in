@@ -31,14 +31,14 @@ export default function MainNav() {
   };
 
   return (
-    <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
+    <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6 z-20">
       <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
         <Link
           className="flex items-center gap-2 text-lg font-semibold md:text-base"
           href="#"
         >
           <ChefHatIcon className="h-6 w-6" />
-          <span className="sr-only">Acme Inc</span>
+          <span className="sr-only">nFactorial Incubator 2024</span>
         </Link>
         <Link
           className="text-muted-foreground transition-colors hover:text-foreground"
@@ -48,7 +48,7 @@ export default function MainNav() {
         </Link>
         <Link
           className="text-muted-foreground transition-colors hover:text-foreground"
-          href="#"
+          href="/about"
         >
           About
         </Link>
@@ -83,7 +83,7 @@ export default function MainNav() {
             </Link>
             <Link
               className="text-muted-foreground transition-colors hover:text-foreground"
-              href="#"
+              href="/about"
             >
               About
             </Link>
@@ -119,8 +119,6 @@ export default function MainNav() {
                 My account
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>Support</DropdownMenuItem>
-              <DropdownMenuSeparator />
               <DropdownMenuItem onClick={() => handleSignOut()}>
                 Logout
               </DropdownMenuItem>
@@ -152,27 +150,6 @@ function CircleUserIcon(props: any) {
     </svg>
   );
 }
-
-// function MenuIcon(props: any) {
-//   return (
-//     <svg
-//       {...props}
-//       xmlns="http://www.w3.org/2000/svg"
-//       width="24"
-//       height="24"
-//       viewBox="0 0 24 24"
-//       fill="none"
-//       stroke="currentColor"
-//       strokeWidth="2"
-//       strokeLinecap="round"
-//       strokeLinejoin="round"
-//     >
-//       <line x1="4" x2="20" y1="12" y2="12" />
-//       <line x1="4" x2="20" y1="6" y2="6" />
-//       <line x1="4" x2="20" y1="18" y2="18" />
-//     </svg>
-//   );
-// }
 
 function ChefHatIcon(props: any) {
   return (

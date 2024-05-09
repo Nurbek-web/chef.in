@@ -118,6 +118,12 @@ export default function CommentsOfUser({ user }: { user: any }) {
             <div className="grid gap-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-800 dark:bg-gray-950">
               <div className="flex items-center justify-between gap-4">
                 <div className="flex items-center gap-4">
+                  <Avatar className="h-10 w-10">
+                    <AvatarImage alt="@shadcn" src="/placeholder-user.jpg" />
+                    <AvatarFallback>
+                      {comment.data.user_mail[0] + comment.data.user_mail[1]}
+                    </AvatarFallback>
+                  </Avatar>
                   <div className="grid gap-1">
                     <div className="font-medium">{user.email}</div>
                     <div className="text-xs text-gray-500 dark:text-gray-400">
