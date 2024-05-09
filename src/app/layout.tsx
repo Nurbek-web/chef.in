@@ -36,7 +36,6 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {/* Wrap the children with the AuthContextProvider to provide authentication context */}
           <AuthContextProvider>{children}</AuthContextProvider>
           <Toaster />
         </ThemeProvider>

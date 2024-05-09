@@ -1,13 +1,14 @@
 "use server";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import { formatDistanceToNow } from "date-fns";
 import { HomeIcon } from "lucide-react";
 import Link from "next/link";
-import CommentList from "./comment-list";
-import getDocument from "@/firebase/firestore/getDocument";
 
 export default async function RecipePage({ recipe }: { recipe: any }) {
+  const createdAt = recipe.result.created_at.toDate();
+  const timeAgo = formatDistanceToNow(createdAt, { addSuffix: true });
+
   return (
     <>
       <div>
@@ -18,7 +19,8 @@ export default async function RecipePage({ recipe }: { recipe: any }) {
           By <> </>
           <span className="font-medium text-gray-900 dark:text-gray-100">
             {recipe.result.author}
-          </span>
+          </span>{" "}
+          <span className="text-gray-500 dark:text-gray-400">- {timeAgo}</span>
         </p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

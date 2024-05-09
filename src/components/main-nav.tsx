@@ -24,6 +24,7 @@ export default function MainNav() {
 
   const handleSignOut = async () => {
     try {
+      router.push("/");
       await logOut();
     } catch (error) {
       console.log(error);
@@ -51,12 +52,6 @@ export default function MainNav() {
           href="/about"
         >
           About
-        </Link>
-        <Link
-          className="text-muted-foreground transition-colors hover:text-foreground"
-          href="#"
-        >
-          ChefBot
         </Link>
       </nav>
       <Sheet>
@@ -86,12 +81,6 @@ export default function MainNav() {
               href="/about"
             >
               About
-            </Link>
-            <Link
-              className="text-muted-foreground transition-colors hover:text-foreground"
-              href="#"
-            >
-              ChefBot
             </Link>
           </nav>
         </SheetContent>

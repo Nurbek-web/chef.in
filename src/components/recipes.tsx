@@ -1,10 +1,11 @@
 "use client";
 
-import RecipeCard from "./recipe-card";
 import { useState, useEffect } from "react";
-import getRecipes from "@/firebase/firestore/getRecipes";
 import { Button } from "./ui/button";
+
 import RecipesSkeleton from "./recipes-skeleton";
+import getRecipes from "@/firebase/firestore/getRecipes";
+import RecipeCard from "./recipe-card";
 
 export default function Recipes({
   query,

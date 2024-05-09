@@ -18,16 +18,14 @@ export default function CommentForm({ recipe_id }: { recipe_id: any }) {
 
   const router = useRouter();
 
-  const [disabled, setDisabled] = useState(true); // State to manage the disabled state of the button
+  const [disabled, setDisabled] = useState(true);
   const [comment, setComment] = useState("");
 
   const handleSubmit = async () => {
-    setDisabled(true); // Disable the button when the form is submitted
+    setDisabled(true);
 
-    // Generate a unique ID for the comment
     const commentId = uuidv4();
 
-    // Add the comment to Firestore
     const { result, error } = await addData("comments", commentId, {
       message: comment,
       user_id: user.uid,
@@ -36,7 +34,6 @@ export default function CommentForm({ recipe_id }: { recipe_id: any }) {
       recipe_id: recipe_id,
     });
 
-    // Handle success or error
     if (error) {
       console.error("Error adding comment:", error);
     } else {
@@ -50,7 +47,7 @@ export default function CommentForm({ recipe_id }: { recipe_id: any }) {
       setComment("");
     }
 
-    setDisabled(false); // Enable the button after submission
+    setDisabled(false);
     router.refresh();
   };
 
@@ -86,7 +83,7 @@ export default function CommentForm({ recipe_id }: { recipe_id: any }) {
             id="comment"
             name="comment"
             value={comment}
-            onChange={handleChangeInput} // Handle changes in the textarea input
+            onChange={handleChangeInput}
             placeholder="Write your comment"
           />
         </div>

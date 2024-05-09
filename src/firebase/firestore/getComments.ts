@@ -6,8 +6,6 @@ import {
   where,
   getFirestore,
   orderBy,
-  limit,
-  startAfter,
 } from "firebase/firestore";
 
 const db = getFirestore(firebase_app);
@@ -29,7 +27,6 @@ export default async function getComments(recipeId: string) {
     const commentData = doc.data();
     // Convert timestamp to "time ago" format
     const timeAgo = getTimeAgo(commentData.created_at.toMillis());
-    // Include "time ago" in comment data
     const commentWithTimeAgo = {
       id: doc.id,
       data: {

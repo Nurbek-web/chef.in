@@ -11,10 +11,8 @@ import { UsersRound } from "lucide-react";
 export default function IconSectionStackedCards() {
   return (
     <>
-      {/* Icon Blocks */}
       <div className="container py-24 lg:py-32">
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 items-center gap-6 md:gap-10">
-          {/* Card */}
           <Card>
             <CardHeader className="pb-4 flex-row items-center gap-4">
               <div className="inline-flex justify-center items-center w-[62px] h-[62px] rounded-full border-2 bg-primary">
@@ -26,8 +24,6 @@ export default function IconSectionStackedCards() {
               Explore a variety of delicious recipes from around the world.
             </CardContent>
           </Card>
-          {/* End Card */}
-          {/* Card */}
           <Card>
             <CardHeader className="pb-4 flex-row items-center gap-4">
               <div className="inline-flex justify-center items-center w-[62px] h-[62px] rounded-full border-2 bg-primary">
@@ -40,8 +36,6 @@ export default function IconSectionStackedCards() {
               cookbook.
             </CardContent>
           </Card>
-          {/* End Card */}
-          {/* Card */}
           <Card>
             <CardHeader className="pb-4 flex-row items-center gap-4">
               <div className="inline-flex justify-center items-center w-[62px] h-[62px] rounded-full border-2 bg-primary">
@@ -54,10 +48,8 @@ export default function IconSectionStackedCards() {
               any recipe!
             </CardContent>
           </Card>
-          {/* End Card */}
         </div>
       </div>
-      {/* End Icon Blocks */}
     </>
   );
 }

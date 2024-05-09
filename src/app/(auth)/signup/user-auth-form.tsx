@@ -3,15 +3,15 @@
 import * as React from "react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 import { cn } from "@/lib/utils";
-import { Icons } from "@/components/ui/icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 import signUp from "@/firebase/auth/signup";
-import Link from "next/link";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -19,24 +19,27 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const router = useRouter();
 
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // Handle form submission
   const handleForm = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
 
-    // Attempt to sign up with provided email and password
-    const { result, error } = await signUp(email, password);
-
-    if (error) {
-      // Display and log any sign-up errors
-      console.log(error);
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters long.");
       return;
     }
 
-    // Sign up successful
+    const { result, error } = await signUp(email, password);
+
+    if (error) {
+      console.log(error);
+      setError("Bad request!");
+      return;
+    }
+
     console.log(result);
 
     router.push("/");
@@ -77,7 +80,14 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
             />
           </div>
 
-          <Button type="submit" className="w-full">
+          {error && (
+            <Alert variant="destructive">
+              <AlertTitle>Error</AlertTitle>
+              <AlertDescription>{error}</AlertDescription>
+            </Alert>
+          )}
+
+          <Button type="submit" className="w-full" disabled={isLoading}>
             Sign up
           </Button>
           <Link href="/">

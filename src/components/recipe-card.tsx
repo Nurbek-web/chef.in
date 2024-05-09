@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Card } from "./ui/card";
 import { formatDistanceToNow } from "date-fns";
-import { clearIndexedDbPersistence } from "firebase/firestore";
 
 export default function RecipeCard({ recipe }: { recipe: any }) {
   console.log(recipe);

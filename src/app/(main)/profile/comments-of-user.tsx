@@ -15,14 +15,14 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-
-import { getCommentsOfUser } from "@/firebase/firestore/getComments";
-import { UserAuth } from "@/context/AuthContext";
-import { deleteComment as deleteCommentOfUser } from "@/firebase/firestore/deleteComment";
-import { updateComment as updateCommentOfUser } from "@/firebase/firestore/updateComment";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
+
 import CommentsSkeleton from "./comments-skeleton";
+
+import { getCommentsOfUser } from "@/firebase/firestore/getComments";
+import { deleteComment as deleteCommentOfUser } from "@/firebase/firestore/deleteComment";
+import { updateComment as updateCommentOfUser } from "@/firebase/firestore/updateComment";
 
 export default function CommentsOfUser({ user }: { user: any }) {
   const [comments, setComments] = useState([]);
@@ -170,7 +170,7 @@ export default function CommentsOfUser({ user }: { user: any }) {
                     variant="ghost"
                     onClick={() => router.push(`/${comment.data.recipe_id}`)}
                   >
-                    <LinkIcon className="h-4 w-4" /> <span> Go to recipe</span>
+                    <LinkIcon className="h-4 w-4" />
                     <span className="sr-only">Go to recipe</span>
                   </Button>
                 </div>
