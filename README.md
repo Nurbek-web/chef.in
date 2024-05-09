@@ -70,4 +70,7 @@ I considered using my own API rather than given [Edamam API](https://developer.e
 
 No major issues with the app at the moment. I'll keep an eye out for any problems during development and testing.
 
-#### Notes: I'm a student at Nazarbayev Intellectual School in 10th grade and typically study from 8:00 AM to 6:00 PM. Had some issues with time management
+#### Notes: I'm a student at Nazarbayev Intellectual School in 10th grade and typically study from 8:00 AM to 6:00 PM. Had some issues with time management. 
+Also, you can edit your comments in profile page btw. If you didnt notice)
+![image](https://github.com/Nurbek-web/chef.in/assets/78167331/0473ebb1-9423-408f-bd8a-a3f8f4a9efa0)
+
