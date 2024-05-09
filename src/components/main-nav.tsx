@@ -37,7 +37,7 @@ export default function MainNav() {
           className="flex items-center gap-2 text-lg font-semibold md:text-base"
           href="#"
         >
-          <Package2Icon className="h-6 w-6" />
+          <ChefHatIcon className="h-6 w-6" />
           <span className="sr-only">Acme Inc</span>
         </Link>
         <Link
@@ -56,7 +56,7 @@ export default function MainNav() {
           className="text-muted-foreground transition-colors hover:text-foreground"
           href="#"
         >
-          Customers
+          ChefBot
         </Link>
       </nav>
       <Sheet>
@@ -72,7 +72,7 @@ export default function MainNav() {
               className="flex items-center gap-2 text-lg font-semibold md:text-base"
               href="#"
             >
-              <Package2Icon className="h-6 w-6" />
+              <ChefHatIcon className="h-6 w-6" />
               <span className="sr-only">Acme Inc</span>
             </Link>
             <Link
@@ -91,7 +91,7 @@ export default function MainNav() {
               className="text-muted-foreground transition-colors hover:text-foreground"
               href="#"
             >
-              Customers
+              ChefBot
             </Link>
           </nav>
         </SheetContent>
@@ -173,7 +173,7 @@ function CircleUserIcon(props: any) {
 //   );
 // }
 
-function Package2Icon(props: any) {
+function ChefHatIcon(props: any) {
   return (
     <svg
       {...props}
@@ -187,9 +187,8 @@ function Package2Icon(props: any) {
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9Z" />
-      <path d="m3 9 2.45-4.9A2 2 0 0 1 7.24 3h9.52a2 2 0 0 1 1.8 1.1L21 9" />
-      <path d="M12 3v6" />
+      <path d="M17 21a1 1 0 0 0 1-1v-5.35c0-.457.316-.844.727-1.041a4 4 0 0 0-2.134-7.589 5 5 0 0 0-9.186 0 4 4 0 0 0-2.134 7.588c.411.198.727.585.727 1.041V20a1 1 0 0 0 1 1Z" />
+      <path d="M6 17h12" />
     </svg>
   );
 }
