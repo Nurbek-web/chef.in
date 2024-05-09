@@ -29,7 +29,7 @@ export default async function Home({
             </div>
           </div>
           <Suspense key={query + currentPage} fallback={<>Loading ...</>}>
-            <Recipes recipesPerPage={4} query={query} />
+            <Recipes recipesPerPage={8} query={query} />
           </Suspense>
         </div>
       </section>
