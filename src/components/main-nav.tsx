@@ -14,6 +14,8 @@ import {
 
 import { UserAuth } from "@/context/AuthContext";
 import SearchBar from "./search-bar";
+import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
+import { MenuIcon } from "lucide-react";
 
 export default function MainNav() {
   const { user, logOut }: any = UserAuth();
@@ -55,7 +57,7 @@ export default function MainNav() {
           Customers
         </Link>
       </nav>
-      {/* <Sheet>
+      <Sheet>
         <SheetTrigger asChild>
           <Button className="shrink-0 md:hidden" size="icon" variant="outline">
             <MenuIcon className="h-5 w-5" />
@@ -65,42 +67,33 @@ export default function MainNav() {
         <SheetContent side="left">
           <nav className="grid gap-6 text-lg font-medium">
             <Link
-              className="flex items-center gap-2 text-lg font-semibold"
+              className="flex items-center gap-2 text-lg font-semibold md:text-base"
               href="#"
             >
               <Package2Icon className="h-6 w-6" />
               <span className="sr-only">Acme Inc</span>
             </Link>
             <Link
-              className="text-muted-foreground hover:text-foreground"
-              href="#"
+              className="text-muted-foreground transition-colors hover:text-foreground"
+              href="/"
             >
-              Dashboard
+              Recipes
             </Link>
             <Link
-              className="text-muted-foreground hover:text-foreground"
+              className="text-muted-foreground transition-colors hover:text-foreground"
               href="#"
             >
-              Orders
+              About
             </Link>
             <Link
-              className="text-muted-foreground hover:text-foreground"
-              href="#"
-            >
-              Products
-            </Link>
-            <Link
-              className="text-muted-foreground hover:text-foreground"
+              className="text-muted-foreground transition-colors hover:text-foreground"
               href="#"
             >
               Customers
             </Link>
-            <Link className="hover:text-foreground" href="#">
-              Settings
-            </Link>
           </nav>
         </SheetContent>
-      </Sheet> */}
+      </Sheet>
       <div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
         <SearchBar />
         {!user ? (
@@ -119,7 +112,9 @@ export default function MainNav() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <Link href="/profile">
+                <DropdownMenuItem>My account</DropdownMenuItem>
+              </Link>
               <DropdownMenuSeparator />
               <DropdownMenuItem>Support</DropdownMenuItem>
               <DropdownMenuSeparator />
