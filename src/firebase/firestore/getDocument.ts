@@ -13,6 +13,7 @@ export default async function getDocument(collection: string, id: string) {
   if (docSnap.exists()) {
     result = docSnap.data();
     console.log("Document data:", docSnap.data());
+    error = 0;
   } else {
     error = 1;
     console.log("No such document!");
