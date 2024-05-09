@@ -1,22 +1,22 @@
 "use client";
 
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { MenuIcon } from "lucide-react";
 
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenuTrigger,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuItem,
   DropdownMenuContent,
   DropdownMenu,
 } from "@/components/ui/dropdown-menu";
+import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 
 import { UserAuth } from "@/context/AuthContext";
 import SearchBar from "./search-bar";
-import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
-import { MenuIcon } from "lucide-react";
+import { ModeToggle } from "./theme-button";
 
 export default function MainNav() {
   const { user, logOut }: any = UserAuth();
@@ -98,6 +98,7 @@ export default function MainNav() {
       </Sheet>
       <div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
         <SearchBar />
+        <ModeToggle />
         {!user ? (
           <Link
             className="text-muted-foreground hover:text-foreground"

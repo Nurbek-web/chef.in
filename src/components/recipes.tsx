@@ -56,8 +56,8 @@ export default function Recipes({
             <RecipesSkeleton />
           </>
         ) : (
-          recipes.map((recipe: any, key: number) => (
-            <RecipeCard key={key} recipe={recipe} />
+          recipes.map((recipe: any) => (
+            <RecipeCard key={recipe.id} recipe={recipe} />
           ))
         )}
       </div>
